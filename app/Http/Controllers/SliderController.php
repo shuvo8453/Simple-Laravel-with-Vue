@@ -37,4 +37,44 @@ class SliderController extends Controller
         }
 
     }
+
+    public function edit($id)
+    {
+        $slider = Slider::find($id);
+        return response()->json($slider);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $slider = Slider::find($id);
+        if (!$slider) {
+            return response()->json(['message' => 'Slider not found'], 404);
+        }
+
+        try {
+            if ($request->hasFile('image')) {
+                $fileName = time() . '.' . $request->image->getClientOriginalExtension();
+                if (Storage::put("upload/slider/{$fileName}", file_get_contents($request->image))) {
+
+                    $request->merge(['url' => "upload/slider/{$fileName}"]);
+                }
+            }
+            $slider->update($request->all());
+            return response()->json(["message" => "Successfully updated!"]);
+        } catch (Exception $e) {
+
+        }
+    }
+
+    public function delete($id)
+    {
+        $slider = Slider::find($id);
+        $slider->delete();
+        return response()->json('successfully deleted');
+    }
+
+    public function getAllData(Request $request)
+    {
+        return Slider::get();
+    }
 }

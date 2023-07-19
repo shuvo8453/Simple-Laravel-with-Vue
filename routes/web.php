@@ -17,8 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'app');
 
 Route::view('/about', 'app');
+
 Route::view('/admin/slider', 'app');
 
+Route::view('/admin/slider/create', 'app');
+
+Route::view('/admin/slider/update/{id}', 'app');
 
 Route::resource('slider', SliderController::class);
 
+Route::get('get/slider', [SliderController::class, 'getAllData']);

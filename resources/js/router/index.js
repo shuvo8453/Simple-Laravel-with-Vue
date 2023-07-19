@@ -2,6 +2,8 @@ import {createRouter, createWebHistory} from 'vue-router';
 import Home from '../components/Home.vue'
 import About from '../components/About.vue'
 import SliderCreate from "@/views/slider/Create.vue";
+import SliderIndex from "@/views/slider/Index.vue";
+import SliderUpdate from "@/views/slider/UpdateForm.vue";
 
 const routes = [
     {
@@ -16,6 +18,16 @@ const routes = [
     },
     {
         path:'/admin/slider',
+        name:'slider.index',
+        component:SliderIndex
+    },
+    {
+      path: '/admin/slider/update/:id',
+      name: 'slider.updateform',
+      component:   SliderUpdate
+    },
+    {
+        path:'/admin/slider/create',
         name:'slider.create',
         component:SliderCreate
     }
