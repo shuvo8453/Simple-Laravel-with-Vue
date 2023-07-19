@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Edit Post</h1>
-    <form @submit.prevent="">
+    <form @submit.prevent="updateSlider">
       <div class="form-group">
         <label for="title">Title</label>
         <input type="text" v-model="data.title" class="form-control" id="title" >
@@ -20,6 +20,7 @@
       </div>
       <div class="form-group">
         <label for="exampleFormControlFile1">Image :</label>
+        <img :src="data.url" height="100" width="100" class="m-4">
         <input type="file" @change="fileUpload($event)" ref="image" class="form-control form-control-file" id="exampleFormControlFile1">
       </div>
       <br />
@@ -48,6 +49,11 @@ export default {
             console.error(error)
           })
     },
+    updateSlider(){
+      axios.post(`/slider/${this.$route.params.id}`, {_method:"put", title: this.data.title}).then(res => {
+        this.$router.push({name: 'slider.index'})
+      })
+    }
   },
   mounted() {
     this.getSliderData()

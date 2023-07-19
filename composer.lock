@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa322c53454393ed775cfe4807d54a50",
+    "content-hash": "6b60d0490a3577c20b307a8dd220ea25",
     "packages": [
         {
             "name": "brick/math",
@@ -973,6 +973,54 @@
                 }
             ],
             "time": "2021-10-07T12:57:01+00:00"
+        },
+        {
+            "name": "joy2362/service-generator",
+            "version": "3.1.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joy2362/service-generator.git",
+                "reference": "ce97889fbae11abe707bc37b0e8570b8b57de23b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joy2362/service-generator/zipball/ce97889fbae11abe707bc37b0e8570b8b57de23b",
+                "reference": "ce97889fbae11abe707bc37b0e8570b8b57de23b",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=8.0",
+                "php": "^8.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Joy2362\\ServiceGenerator\\ServiceGeneratorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Joy2362\\ServiceGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "joy2362",
+                    "email": "abdullahzahidjoy@gmail.com"
+                }
+            ],
+            "description": "A set of tools to make working with service easier in Laravel",
+            "support": {
+                "issues": "https://github.com/joy2362/service-generator/issues",
+                "source": "https://github.com/joy2362/service-generator/tree/3.1.11"
+            },
+            "time": "2023-07-19T21:15:04+00:00"
         },
         {
             "name": "laravel/framework",
