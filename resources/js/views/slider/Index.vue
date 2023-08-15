@@ -17,7 +17,7 @@
       <td>{{ image.description }}</td>
       <td>
         <router-link :to="'/admin/slider/update/' + image.id" class="btn btn-secondary">edit</router-link>
-        <button class="btn btn-danger">delete</button>
+        <button class="btn btn-danger" @click="deleteSliderData(image.id)">delete</button>
       </td>
     </tr>
     </tbody>
@@ -34,13 +34,21 @@ export default {
   },
   methods:{
     getSliderData(){
-      axios.get('/get/slider', ).then(res=> {
+      axios.get('/api/get/slider', ).then(res=> {
         this.data = res.data
       })
         .catch(error => {
           console.error(error)
         })
     },
+
+    deleteSliderData(id){
+        console.log(id , "pasdf")
+        axios.delete(`/slider/${id}`).then(res=> {
+            console.log(res.data);
+            this.getSliderData();
+        })
+    }
   },
   mounted() {
     this.getSliderData()
