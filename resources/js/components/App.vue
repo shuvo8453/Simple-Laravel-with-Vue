@@ -11,7 +11,12 @@
       <li class="nav-item">
         <router-link to="/admin/slider" class="nav-link">Slider List</router-link>
       </li>
+      <li class="mr-auto nav-item">
+        <button type="button" @click="logout" class="nav-link">Log out</button>
+      </li>
+
     </ul>
+
   </nav><br />
   <transition name="fade">
     <router-view></router-view>
@@ -21,7 +26,18 @@
 
 <script>
 export default {
-
+    methods: {
+        logout(){
+            axios.post('/api/logout')
+            .then(response => {
+                localStorage.removeItem('token');
+                this.$router.push('/login');
+            })
+            .catct(error => {
+                console.error(error);
+            })
+        }
+    }
 }
 </script>
 

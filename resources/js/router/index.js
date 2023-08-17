@@ -20,7 +20,8 @@ const routes = [
     {
         path:'/admin/slider',
         name:'slider.index',
-        component:SliderIndex
+        component:SliderIndex,
+        meta: { requiresAuth:true }
     },
     {
       path: '/admin/slider/update/:id',

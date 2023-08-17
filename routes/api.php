@@ -25,3 +25,5 @@ Route::get('get/slider', [SliderController::class, 'getAllData']);
 Route::get('login', [AuthController::class, 'index']);
 
 Route::post('login', [AuthController::class, 'login']);
+
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
