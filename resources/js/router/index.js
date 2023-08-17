@@ -4,6 +4,7 @@ import About from '../components/About.vue'
 import SliderCreate from "@/views/slider/Create.vue";
 import SliderIndex from "@/views/slider/Index.vue";
 import SliderUpdate from "@/views/slider/UpdateForm.vue";
+import Login from "@/views/Login.vue";
 
 const routes = [
     {
@@ -27,9 +28,14 @@ const routes = [
       component:   SliderUpdate
     },
     {
-        path:'/admin/slider/create',
-        name:'slider.create',
-        component:SliderCreate
+        path: '/admin/slider/create',
+        name: 'slider.create',
+        component: SliderCreate
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
     }
 ];
 

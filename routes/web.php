@@ -24,6 +24,8 @@ Route::view('/admin/slider/create', 'app');
 
 Route::view('/admin/slider/update/{id}', 'app');
 
+Route::view('/login', 'app');
+
 Route::resource('slider', SliderController::class);
 
 Route::get('get/slider', [SliderController::class, 'getAllData']);
