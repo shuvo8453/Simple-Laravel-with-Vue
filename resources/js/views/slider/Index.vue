@@ -44,7 +44,7 @@ export default {
 
     deleteSliderData(id){
         console.log(id , "pasdf")
-        axios.delete(`api/slider/${id}`).then(res=> {
+        axios.delete(`/api/slider/${id}`).then(res=> {
             console.log(res.data);
             this.getSliderData();
         })

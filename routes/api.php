@@ -22,6 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('get/slider', [SliderController::class, 'getAllData']);
 
+Route::resource('slider', SliderController::class);
+
 Route::get('login', [AuthController::class, 'index']);
 
 Route::post('login', [AuthController::class, 'login']);
