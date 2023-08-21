@@ -28,7 +28,12 @@
 export default {
     methods: {
         logout(){
-            axios.post('/api/logout')
+            axios.post('/api/logout', {},{
+                headers: {
+                    'Authorization' : 'Bearer '+  localStorage.getItem('token')
+
+                }
+            })
             .then(response => {
                 localStorage.removeItem('token');
                 this.$router.push('/login');

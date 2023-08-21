@@ -7,15 +7,15 @@
 
               <div class="form-group">
                 <label for="email"> Email Address</label>
-                <input type="email" v-model="email" class="form-control" name="email" placeholder="Email Address">
+                <input type="email" v-model="email" class="form-control mt-2" name="email" placeholder="Email Address">
               </div>
 
               <div class="form-group">
                 <label for="password"> Password</label>
-                <input type="password" v-model="password" class="form-control" name="password" placeholder="Password">
+                <input type="password" v-model="password" class="form-control mt-2" name="password" placeholder="Password">
               </div>
 
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+              <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">Sign in</button>
             </form>
       </div>
     </div>
