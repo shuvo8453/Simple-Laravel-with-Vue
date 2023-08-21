@@ -7,7 +7,13 @@ import router from './router/index'
 const app = createApp({
     components: {
         AppComponent,
-    }
+    },
+    data() {
+        return {
+            loader: false,
+            isAuthenticated: false,
+        }
+      }
 });
 
 app.use(router)

@@ -36,8 +36,9 @@ export default {
     },
 
     methods:{
-        login(){
-            axios.post('/api/login',{
+        async login(){
+            this.$root.loader = true;
+            await axios.post('/api/login',{
                 email: this.email,
                 password: this.password
             })
@@ -45,6 +46,8 @@ export default {
                 const token = response.data.token;
                 localStorage.setItem('token', token)
                 this.$router.push('/admin/slider');
+                this.$root.isAuthenticated = true;
+                this.$root.loader = false;
             })
             .catch(error => {
                 console.error(error);

@@ -11,13 +11,19 @@
       <li class="nav-item">
         <router-link to="/admin/slider" class="nav-link">Slider List</router-link>
       </li>
-      <li class="mr-auto nav-item">
-        <button type="button" @click="logout" class="nav-link">Log out</button>
+      <li class="mr-auto nav-item" v-if="$root.isAuthenticated">
+        <button type="button" @click="logout" class="nav-link">Logout</button>
+      </li>
+      <li class="mr-auto nav-item" v-else>
+        <router-link type="button" to="/login" class="nav-link">Login</router-link>
       </li>
 
     </ul>
 
   </nav><br />
+
+  <Loader v-if="$root.loader"></Loader>
+
   <transition name="fade">
     <router-view></router-view>
   </transition>
@@ -25,24 +31,41 @@
 </template>
 
 <script>
+
+import Loader from './elements/Loader.vue';
 export default {
+    components:{Loader},
     methods: {
-        logout(){
-            axios.post('/api/logout', {},{
+        async logout(){
+            this.$root.loader = true;
+            await axios.post('/api/logout', {},{
                 headers: {
                     'Authorization' : 'Bearer '+  localStorage.getItem('token')
-
                 }
             })
             .then(response => {
                 localStorage.removeItem('token');
                 this.$router.push('/login');
+                this.checkAuthenticated();
+                this.$root.loader = false;
             })
             .catct(error => {
                 console.error(error);
             })
+        },
+
+        checkAuthenticated(){
+            const token = localStorage.getItem('token');
+            if(token){
+                this.$root.isAuthenticated = true
+            }else{
+                this.$root.isAuthenticated = false
+            }
         }
-    }
+    },
+    mounted(){
+            this.checkAuthenticated()
+        }
 }
 </script>
 

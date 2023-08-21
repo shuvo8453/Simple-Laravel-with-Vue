@@ -33,26 +33,27 @@ export default {
     }
   },
   methods:{
-    getSliderData(){
-      axios.get('/api/get/slider', ).then(res=> {
+    async getSliderData(){
+        this.$root.loader = true;
+      await axios.get('/api/get/slider', ).then(res=> {
         this.data = res.data
+        this.$root.loader = false;
       })
         .catch(error => {
           console.error(error)
         })
     },
 
-    deleteSliderData(id){
-        console.log(id , "pasdf")
-        axios.delete(`/api/slider/${id}`).then(res=> {
-            console.log(res.data);
+    async deleteSliderData(id){
+        this.$root.loader = true;
+        await axios.delete(`/api/slider/${id}`).then(res=> {
+            this.$root.loader = false;
             this.getSliderData();
         })
     }
   },
   mounted() {
     this.getSliderData()
-    console.log(this.data)
   }
 }
 </script>
