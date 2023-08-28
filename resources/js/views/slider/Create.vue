@@ -47,7 +47,7 @@ export default {
       formData.append('image', this.data.image);
       formData.append('status', this.data.status);
 
-      axios.post('/slider', formData).then(res=>{
+      axios.post('/api/slider', formData).then(res=>{
         this.data.title='';
         this.data.description='';
         this.data.image=null;

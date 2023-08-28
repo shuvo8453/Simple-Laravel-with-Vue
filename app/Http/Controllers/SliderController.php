@@ -22,6 +22,7 @@ class SliderController extends Controller
 
     public function store(SliderRequest $request)
     {
+//        dd(123);
         try {
             if ($request->hasFile('image')) {
                 $fileName = time() . '.' . $request->image->getClientOriginalExtension();

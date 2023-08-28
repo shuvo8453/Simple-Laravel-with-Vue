@@ -28,6 +28,7 @@
 
 <script>
 export default {
+    name: 'Home',
     data() {
         return {
             data: []
@@ -35,7 +36,7 @@ export default {
     },
     methods:{
         getSlider(){
-            axios.get('/slider', {params: {allData: 1}}).then(res=>{
+            axios.get('/api/slider', {params: {allData: 1}}).then(res=>{
                 this.data = res.data;
               console.log(this.data)
             })
@@ -46,7 +47,9 @@ export default {
         this.getSlider();
     },
     created () {
-
+        if (!localStorage.getItem('token')){
+            this.$router.push('/login')
+        }
     }
 }
 </script>
