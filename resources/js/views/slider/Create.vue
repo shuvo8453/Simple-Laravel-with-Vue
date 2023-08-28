@@ -59,7 +59,12 @@ export default {
     fileUpload(e){
       this.data.image = e.target.files[0];
     }
-  }
+  },
+    created () {
+        if (!localStorage.getItem('token')){
+            this.$router.push('/login')
+        }
+    }
 }
 </script>
 

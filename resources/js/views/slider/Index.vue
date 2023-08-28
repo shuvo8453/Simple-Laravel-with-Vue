@@ -54,7 +54,12 @@ export default {
   },
   mounted() {
     this.getSliderData()
-  }
+  },
+    created () {
+        if (!localStorage.getItem('token')){
+            this.$router.push('/login')
+        }
+    }
 }
 </script>
 
