@@ -6,17 +6,26 @@
               <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
               <div class="form-group">
-                <label for="email"> Email Address</label>
-                <input type="email" v-model="email" class="form-control mt-2" name="email" placeholder="Email Address">
+                <label for="email"> Email Address </label>
+                <input type="email" v-model="email" class="form-control mt-2" name="email" placeholder="enter email address">
               </div>
 
-              <div class="form-group">
-                <label for="password"> Password</label>
-                <input type="password" v-model="password" class="form-control mt-2" name="password" placeholder="Password">
+              <div class="form-group password-input">
+                <label for="password"> Password </label>
+                <input
+                    v-model="password"
+                    :type="showPassword ? 'text' : 'password'"
+                    class="form-control mt-2"
+                    name="password"
+                    placeholder="enter password"
+                />
+                <button type="button" @click="toggleShowPassword" class="eye-button">
+                    <i  :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                </button>
               </div>
 
-              <router-link class="btn btn-lg btn-primary btn-block mt-2" to="/">Registation</router-link>
-              <button class="btn btn-lg btn-primary btn-block mt-2 float-end" type="submit">Sign in</button>
+              <router-link class="btn btn-lg btn-primary btn-block mt-2" to="/"> Sign up </router-link>
+              <button class="btn btn-lg btn-primary btn-block mt-2 float-end" type="submit"> Sign in </button>
             </form>
       </div>
     </div>
@@ -25,14 +34,14 @@
 
 <script>
 import axios from 'axios'
-import router from '../router';
-
 
 export default {
+    name: 'PasswordInput',
     data(){
         return{
             email: '',
             password: '',
+            showPassword: false,
         }
     },
 
@@ -53,11 +62,27 @@ export default {
             .catch(error => {
                 console.error(error);
             })
-        }
+        },
+        toggleShowPassword() {
+            this.showPassword = !this.showPassword;
+        },
     }
 }
 </script>
 
-<style>
+<style scoped>
+    .password-input {
+  position: relative;
+}
+
+.eye-button {
+  position: absolute;
+  top: 70%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
 </style>
