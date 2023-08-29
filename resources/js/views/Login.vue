@@ -16,6 +16,7 @@
               </div>
 
               <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">Sign in</button>
+              <router-link class="btn btn-lg btn-primary btn-block mt-2 float-end" to="/">Registation</router-link>
             </form>
       </div>
     </div>

@@ -36,7 +36,11 @@ export default {
     },
     methods:{
         getSlider(){
-            axios.get('/api/slider', {params: {allData: 1}}).then(res=>{
+            axios.get('/api/slider', {params: {allData: 1} ,
+                headers: {
+                    'Authorization' : 'Bearer '+  localStorage.getItem('token')
+                }
+            }).then(res=>{
                 this.data = res.data;
               console.log(this.data)
             })

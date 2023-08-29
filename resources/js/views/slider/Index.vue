@@ -35,7 +35,11 @@ export default {
   methods:{
     async getSliderData(){
         this.$root.loader = true;
-      await axios.get('/api/get/slider', ).then(res=> {
+      await axios.get('/api/get/slider',{
+                headers: {
+                    'Authorization' : 'Bearer '+  localStorage.getItem('token')
+                }
+            } ).then(res=> {
         this.data = res.data
         this.$root.loader = false;
       })
