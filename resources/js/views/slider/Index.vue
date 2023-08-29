@@ -50,7 +50,11 @@ export default {
 
     async deleteSliderData(id){
         this.$root.loader = true;
-        await axios.delete(`/api/slider/${id}`).then(res=> {
+        await axios.delete(`/api/slider/${id}`,{
+                headers: {
+                    'Authorization' : 'Bearer '+  localStorage.getItem('token')
+                }
+            } ).then(res=> {
             this.$root.loader = false;
             this.getSliderData();
         })
