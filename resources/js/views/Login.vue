@@ -15,8 +15,8 @@
                 <input type="password" v-model="password" class="form-control mt-2" name="password" placeholder="Password">
               </div>
 
-              <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">Sign in</button>
-              <router-link class="btn btn-lg btn-primary btn-block mt-2 float-end" to="/">Registation</router-link>
+              <router-link class="btn btn-lg btn-primary btn-block mt-2" to="/">Registation</router-link>
+              <button class="btn btn-lg btn-primary btn-block mt-2 float-end" type="submit">Sign in</button>
             </form>
       </div>
     </div>
