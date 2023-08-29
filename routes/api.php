@@ -20,10 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('get/slider', [SliderController::class, 'getAllData'])->middleware('auth:sanctum');
-
-Route::resource('slider', SliderController::class)->middleware('auth:sanctum');
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::get('get/slider', [SliderController::class, 'getAllData']);
+    Route::resource('slider', SliderController::class);
+    Route::post('logout', [AuthController::class, 'logout']);
+});
 
 Route::post('login', [AuthController::class, 'login']);
-
-Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
