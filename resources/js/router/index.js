@@ -45,4 +45,12 @@ const router = createRouter({
     routes
 });
 
+router.beforeEach((to, from, next) => {
+    // Placeholder for the user's authentication status
+    const isAuthenticated = localStorage.getItem('token');
+
+    if (to.name !== 'login' && !isAuthenticated) next({ name: 'login' })
+    else next()
+})
+
 export default router;
