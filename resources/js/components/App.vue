@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark" v-if="$root.isAuthenticated">
     <ul class="navbar-nav">
       <li class="nav-item">
         <router-link to="/" class="nav-link">Home</router-link>
