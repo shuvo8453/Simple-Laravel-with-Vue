@@ -22,11 +22,10 @@ class SliderController extends Controller
 
     public function store(SliderRequest $request)
     {
-//        dd(123);
         try {
             if ($request->hasFile('image')) {
                 $fileName = time() . '.' . $request->image->getClientOriginalExtension();
-                if (Storage::put("upload/slider/{$fileName}", file_get_contents($request->image))) {
+                if (Storage::disk('public')->put("upload/slider/{$fileName}", file_get_contents($request->image))) {
 
                     $request->merge(['url' => "upload/slider/{$fileName}"]);
                 }
