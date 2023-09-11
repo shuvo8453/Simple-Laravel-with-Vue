@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -27,5 +31,24 @@ class AuthController extends Controller
         Auth::user()->currentAccessToken()->delete();
 
         return response()->json(['message' => 'Logged out succesfully'], 200);
+    }
+
+    public function registration(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toJson(), 422);
+        }
+
+        $data = $request->all();
+
+        User::create($data);
+
+        return response()->json(['success' => true,'message' => 'Registration succeddful'], 201);
     }
 }

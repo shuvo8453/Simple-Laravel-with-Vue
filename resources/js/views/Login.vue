@@ -24,11 +24,15 @@
                 </button>
               </div>
 
-              <router-link class="btn btn-lg btn-primary btn-block mt-2" to="/"> Sign up </router-link>
+              <router-link type="button" class="btn btn-lg btn-primary btn-block mt-2" to="/registration"> Sign up </router-link>
               <button class="btn btn-lg btn-primary btn-block mt-2 float-end" type="submit"> Sign in </button>
             </form>
       </div>
     </div>
+
+    <transition name="fade">
+        <router-view></router-view>
+    </transition>
 </div>
 </template>
 
@@ -47,7 +51,7 @@ export default {
 
     methods:{
         async login(){
-            this.$root.loader = true;
+            // this.$root.loader = true;
             await axios.post('/api/login',{
                 email: this.email,
                 password: this.password

@@ -5,6 +5,7 @@ import SliderCreate from "@/views/slider/Create.vue";
 import SliderIndex from "@/views/slider/Index.vue";
 import SliderUpdate from "@/views/slider/UpdateForm.vue";
 import Login from "@/views/Login.vue";
+import Registration from "@/views/Registration.vue";
 
 const routes = [
     {
@@ -37,6 +38,11 @@ const routes = [
         path: '/login',
         name: 'login',
         component: Login
+    },
+    {
+        path: '/registration',
+        name: 'registration',
+        component: Registration
     }
 ];
 
@@ -48,8 +54,9 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     // Placeholder for the user's authentication status
     const isAuthenticated = localStorage.getItem('token');
+    const excludeRoutes = ['login', 'registration'];
 
-    if (to.name !== 'login' && !isAuthenticated) next({ name: 'login' })
+    if (!excludeRoutes.includes(to.name) && !isAuthenticated) next({ name: 'login' })
     else next()
 })
 
