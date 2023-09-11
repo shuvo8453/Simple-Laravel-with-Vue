@@ -14,6 +14,15 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
         $credentials = $request->only('email', 'password');
 
         if(Auth::attempt($credentials)){
@@ -39,7 +48,11 @@ class AuthController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+        ],
+        [
+            'password.confirmed' => 'The password confirmation does not match.'
+        ]
+    );
 
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 422);

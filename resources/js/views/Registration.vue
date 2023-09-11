@@ -4,21 +4,24 @@
         <div class="container">
             <div class="">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
+                    <label for="name" class="form-label required">Name</label>
                     <input type="name" class="form-control" v-model="name">
+                    <label class="text-danger" v-if="erros.name">{{ erros.name[0] }}</label>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
+                    <label for="email" class="form-label required">Email address</label>
                     <input type="email" class="form-control" v-model="email">
-                    <div id="email" class="form-text">We'll never share your email with anyone else.</div>
+                    <label class="text-danger" v-if="erros.email">{{ erros.email[0] }}</label>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label required">Password</label>
                     <input type="password" class="form-control" v-model="password">
+                    <label class="text-danger" v-if="erros.password">{{ erros.password[0] }}</label>
                 </div>
                 <div class="mb-3">
-                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <label for="confirm_password" class="form-label required">Confirm Password</label>
                     <input type="password" class="form-control" v-model="confirm_password">
+                    <label class="text-danger" v-if="erros.password">{{ erros.password[0] }}</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -35,7 +38,8 @@ export default {
             name: '',
             email: '',
             password: '',
-            confirm_password: ''
+            confirm_password: '',
+            erros: ''
         }
     },
     methods: {
@@ -51,11 +55,18 @@ export default {
                     this.$router.push('/login')
                 }
             })
+            .catch(error => {
+                console.log(error.response.data, 456);
+                this.erros = JSON.parse(error.response.data);
+            })
         }
     }
 }
 </script>
 
-<style>
-
+<style scoped>
+.required:after {
+    content:" *";
+    color: red;
+  }
 </style>
